@@ -10,11 +10,16 @@ import (
 
 // Config holds the base configuration
 type Config struct {
-	Ai AiConfig
+	Ai        AiConfig
+	Instagram InstagramConfig
 }
 
 type AiConfig struct {
 	ApiKey string
+}
+
+type InstagramConfig struct {
+	InstagramUsername string
 }
 
 // Load loads configuration from environment variables with defaults value
@@ -22,6 +27,9 @@ func Load() *Config {
 	return &Config{
 		Ai: AiConfig{
 			ApiKey: getEnv("OPEN_ROUTER_API", ""),
+		},
+		Instagram: InstagramConfig{
+			InstagramUsername: getEnv("INSTAGRAM_USERNAME", ""),
 		},
 	}
 }
